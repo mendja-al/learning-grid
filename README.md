@@ -3,6 +3,6 @@ A basic system and API to be used for teaching programming. Consists of a 12x12 
 
 API:
 pixelOn(x,y)
-x,y - integer between 0 and 11
+x,y - positive integer
 
-Turns the indicated pixel on coordinates x and y black.
+Turns the indicated pixel on coordinates x and y black. If x or y are out of bounds, nothing will happen.
