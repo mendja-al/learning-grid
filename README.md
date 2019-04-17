@@ -10,4 +10,4 @@ Turns the indicated pixel on coordinates x and y black. If x or y are out of bou
 
 initGrid()
 
-Clears the canvas and draws a grid, making the canvas ready for drawing. Can be also used to clear the canvas and redraw the grid.
+Clears the canvas and draws a grid, making the canvas ready for drawing. Can be used to reset the canvas.
