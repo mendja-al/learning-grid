@@ -6,3 +6,8 @@ pixelOn(x,y)
 x,y - positive integer
 
 Turns the indicated pixel on coordinates x and y black. If x or y are out of bounds, nothing will happen.
+
+
+initGrid()
+
+Clears the canvas and draws a grid, making the canvas ready for drawing. Can be also used to clear the canvas and redraw the grid.

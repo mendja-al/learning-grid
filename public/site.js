@@ -5,8 +5,10 @@ let pixelSize = 60;
 let canvasSize = 480;
 let nrPixels = canvasSize/pixelSize;
 
-function grid() {
+function initGrid() {
     ctx.strokeStyle = "#ccc";
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0,0,canvasSize,canvasSize);
     for(var i=0;i<nrPixels;i++) {
         for(var j=0;j<nrPixels;j++) {
             ctx.beginPath();
@@ -17,10 +19,18 @@ function grid() {
         }
     }
 }
-grid();
+
+initGrid();
+
 function pixelOn(x,y) {
     let startX = x*pixelSize;
     let startY = y*pixelSize;
     ctx.fillStyle = "#000";
     ctx.fillRect(startX,startY,pixelSize,pixelSize);
+}
+
+function runIde() {
+    let ide = document.getElementById("ide");
+    let ideText = ide.value;
+    eval(ideText);
 }

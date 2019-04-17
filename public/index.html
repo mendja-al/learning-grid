@@ -6,10 +6,27 @@
     border:1px solid #ccc;
     image-rendering: pixelated;
 }
+#ide {
+    width: 480px;
+    height: 480px;
+}
+.flex-container {
+    display: flex;
+}
 </style>
 </head>
 <body>
-<canvas id="learning-canvas" height="480" width="480"></canvas>
+<div class="flex-container">
+    <div>
+            <canvas id="learning-canvas" height="480" width="480"></canvas>
+    </div>
+    <div>
+        <textarea id="ide">pixelOn(2,3);
+pixelOn(5,7);
+pixelOn(0,4);</textarea>
+        <button onClick="runIde()">Run</button>
+    </div>
+</div>
 <script src="/public/site.js"></script>
 </body>
 </html>
