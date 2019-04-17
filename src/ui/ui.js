@@ -31,6 +31,8 @@ function pixelOn(x,y) {
 
 function runIde() {
     let ide = document.getElementById("ide");
-    let ideText = ide.value;
+    let ideText = ide.innerText;
     eval(ideText);
 }
+
+let ide = document.getElementById("ide");

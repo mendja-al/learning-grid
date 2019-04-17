@@ -9,6 +9,9 @@
 #ide {
     width: 480px;
     height: 480px;
+    display: inline-block;
+    border: 1px solid black;
+    background: #eee;
 }
 .flex-container {
     display: flex;
@@ -21,12 +24,18 @@
             <canvas id="learning-canvas" height="480" width="480"></canvas>
     </div>
     <div>
-        <textarea id="ide">pixelOn(2,3);
-pixelOn(5,7);
-pixelOn(0,4);</textarea>
+        <code class="lang-js" contenteditable id="ide">pixelOn(2,2);
+pixelOn(2,2);
+pixelOn(5,2);
+pixelOn(1,5);
+pixelOn(2,6);
+pixelOn(3,6);
+pixelOn(4,6);
+pixelOn(5,6);
+pixelOn(6,5);</code>
         <button onClick="runIde()">Run</button>
     </div>
 </div>
-<script src="/public/site.js"></script>
+<script src="/public/js/ui.js"></script>
 </body>
 </html>
