@@ -31,5 +31,6 @@ window.pixelOn = (x,y) => {
 }
 
 window.runIde = () => {
+  initGrid();
   eval(getEditorValue());
 }
