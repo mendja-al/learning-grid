@@ -36,12 +36,21 @@ monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
 // extra libraries
 monaco.languages.typescript.javascriptDefaults.addExtraLib(customTypes);
 
-monaco.editor.create(document.getElementById('container'), {
+let ed = monaco.editor.create(document.getElementById('container'), {
   value: `pixelOn(2,3);
 pixelOn(4,5);
 pixelOn(0,4);`,
   language: 'javascript'
 });
+
+let decorations = [];
+
+export function colorize(lineNr) {
+  ed.revealLine(lineNr);
+  decorations = ed.deltaDecorations(decorations,[
+    {range: new monaco.Range(lineNr,1,lineNr,9999), options: {inlineClassName:'foo-class'}}
+  ]);
+}
 
 export function getEditorValue() {
     return monaco.editor.getModels()[0].getValue();

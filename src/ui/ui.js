@@ -1,4 +1,4 @@
-import {editor, getEditorValue} from './editor';
+import {editor, getEditorValue, colorize} from './editor';
 let canvas = document.getElementById("learning-canvas");
 let ctx = canvas.getContext("2d");
 ctx.translate(0.5, 0.5);
@@ -22,6 +22,8 @@ window.initGrid = () => {
 }
 
 initGrid();
+
+window.colorize = colorize;
 
 window.pixelOn = (x,y) => {
     let startX = x*pixelSize;
