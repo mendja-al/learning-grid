@@ -5,13 +5,16 @@
   "main": "app/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app/index.js"
+    "start": "node app/index.js",
+    "dev": "webpack --mode development",
+    "prod": "webpack --mode production",
+    "watch": "webpack --watch --mode development"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/suldashi/learningGrid.git"
   },
-  "author": "",
+  "author": "mendja.al",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/suldashi/learningGrid/issues"
@@ -19,20 +22,14 @@
   "homepage": "https://github.com/suldashi/learningGrid#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "monaco-editor": "^0.16.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-transform-runtime": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.4.3",
-    "browserify": "^16.2.3",
-    "del": "^4.1.0",
-    "gulp": "^4.0.0",
-    "gulp-babel": "^8.0.0",
-    "gulp-minify": "^3.1.0",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
+    "css-loader": "^2.1.1",
+    "raw-loader": "^2.0.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0"
   }
 }

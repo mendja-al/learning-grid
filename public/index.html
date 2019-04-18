@@ -6,36 +6,26 @@
     border:1px solid #ccc;
     image-rendering: pixelated;
 }
-#ide {
+.flex-container {
+    display: flex;
+}
+#container {
     width: 480px;
     height: 480px;
     display: inline-block;
-    border: 1px solid black;
-    background: #eee;
-}
-.flex-container {
-    display: flex;
 }
 </style>
 </head>
 <body>
 <div class="flex-container">
     <div>
-            <canvas id="learning-canvas" height="480" width="480"></canvas>
+        <canvas id="learning-canvas" height="480" width="480"></canvas>
     </div>
     <div>
-        <code class="lang-js" contenteditable id="ide">pixelOn(2,2);
-pixelOn(2,2);
-pixelOn(5,2);
-pixelOn(1,5);
-pixelOn(2,6);
-pixelOn(3,6);
-pixelOn(4,6);
-pixelOn(5,6);
-pixelOn(6,5);</code>
+        <div id="container"></div>
         <button onClick="runIde()">Run</button>
     </div>
 </div>
-<script src="/public/js/ui.js"></script>
+<script src="/public/js/app.bundle.js"></script>
 </body>
 </html>
