@@ -2,6 +2,10 @@
 <html>
 <head>
 <style>
+.main-container {
+    width: 1200px;
+    margin: 0 auto;
+}
 #learning-canvas {
     border:1px solid #ccc;
     image-rendering: pixelated;
@@ -9,24 +13,43 @@
 .flex-container {
     display: flex;
 }
-#container {
-    width: 480px;
+.wide-container {
+    width: 720px;
     height: 480px;
     display: inline-block;
 }
 .foo-class {
     color: red !important;
 }
+.grower {
+    flex-grow: 1;
+}
+iframe {
+    width: 100%;
+}
+#container {
+    height: 100%;
+    width: 100%;
+}
 </style>
 </head>
 <body>
-<div class="flex-container">
-    <div>
-        <canvas id="learning-canvas" height="480" width="480"></canvas>
+<div class="main-container">
+    <div class="flex-container">
+        <div class="grower wide-container">
+            <iframe width="720" height="480" src="https://www.youtube.com/embed/_vGyYQgFslQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div>
+            <canvas id="learning-canvas" height="480" width="480"></canvas>
+        </div>
     </div>
-    <div>
-        <div id="container"></div>
-        <button onClick="runIde()">Reset and Run</button>
+    <div class="flex-container">
+        <div class="grower">
+            <button onClick="runIde()">Reset and Run</button>
+        </div>
+        <div class="wide-container">
+            <div id="container"></div>
+        </div>
     </div>
 </div>
 <script src="/public/js/app.bundle.js"></script>

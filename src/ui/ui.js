@@ -33,6 +33,7 @@ window.pixelOn = (x,y) => {
 }
 
 window.runIde = () => {
+  colorize(0);
   initGrid();
   eval(getEditorValue());
 }
