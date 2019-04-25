@@ -51,17 +51,15 @@ window.runIde = () => {
   clearAllIntervals();
   clearAllTimeouts();
   initGrid(horPixels,verPixels);
-  eval(getEditorValue());
+  scopedEval(getEditorValue());
 }
 
 window.coinFlip = (probability = 0.5) => {
     return Math.random()<probability;
 }
 
-let _setInterval = window.setInterval;
-let intervalList = [];
 
-let _setTimeout = window.setTimeout;
+let intervalList = [];
 let timeoutList = [];
 
 function clearAllIntervals() {
@@ -78,14 +76,24 @@ function clearAllTimeouts() {
     timeoutList = [];
 }
 
-setInterval = (cb,timeout,args) => {
-    let intervalId = _setInterval(cb,timeout,args);
-    intervalList.push(intervalId);
-    return intervalId;
-}
 
-setTimeout = (cb,timeout,args) => {
-    let timeoutId = _setTimeout(cb,timeout,args);
-    timeoutList.push(timeoutId);
-    return timeoutId;
+
+function scopedEval (declarations)
+{
+    return (function (declarations) {
+        let _setInterval = window.setInterval;
+        let setInterval = (cb,timeout,args) => {
+            let intervalId = _setInterval(cb,timeout,args);
+            intervalList.push(intervalId);
+            return intervalId;
+        }
+
+        let _setTimeout = window.setTimeout;
+        let setTimeout = (cb,timeout,args) => {
+            let timeoutId = _setTimeout(cb,timeout,args);
+            timeoutList.push(timeoutId);
+            return timeoutId;
+        }
+        return eval(declarations); 
+    })(declarations)
 }
