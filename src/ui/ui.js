@@ -23,7 +23,7 @@ window.initGrid = (hPixels,vPixels) => {
 }
 
 function drawGridCell(x,y) {
-    let borderWidth = 0.02;
+    let borderWidth = 0.01;
     let startX = x*pixelWidth;
     let startY = y*pixelHeight;
     ctx.fillStyle = "#eee";
@@ -39,7 +39,7 @@ window.colorize = colorize;
 window.resetColors = resetColors;
 
 window.pixelOn = (x,y) => {
-    let borderWidth = 0.10; //in percent of total width
+    let borderWidth = 0.01; //in percent of total width
     let startX = (x+borderWidth)*pixelWidth;
     let startY = (y+borderWidth)*pixelHeight;
     ctx.fillStyle = "#000";
@@ -48,6 +48,44 @@ window.pixelOn = (x,y) => {
 
 window.runIde = () => {
   resetColors();
+  clearAllIntervals();
+  clearAllTimeouts();
   initGrid(horPixels,verPixels);
   eval(getEditorValue());
+}
+
+window.coinFlip = (probability = 0.5) => {
+    return Math.random()<probability;
+}
+
+let _setInterval = window.setInterval;
+let intervalList = [];
+
+let _setTimeout = window.setTimeout;
+let timeoutList = [];
+
+function clearAllIntervals() {
+    for(var i in intervalList) {
+        clearInterval(intervalList[i]);
+    }
+    intervalList = [];
+}
+
+function clearAllTimeouts() {
+    for(var i in timeoutList) {
+        clearTimeout(timeoutList[i]);
+    }
+    timeoutList = [];
+}
+
+setInterval = (cb,timeout,args) => {
+    let intervalId = _setInterval(cb,timeout,args);
+    intervalList.push(intervalId);
+    return intervalId;
+}
+
+setTimeout = (cb,timeout,args) => {
+    let timeoutId = _setTimeout(cb,timeout,args);
+    timeoutList.push(timeoutId);
+    return timeoutId;
 }

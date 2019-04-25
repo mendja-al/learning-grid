@@ -37,10 +37,20 @@ monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
 monaco.languages.typescript.javascriptDefaults.addExtraLib(customTypes);
 
 let ed = monaco.editor.create(document.getElementById('container'), {
-  value: `initGrid(8,8);
-pixelOn(2,3);
-pixelOn(4,5);
-pixelOn(0,4);`,
+  value: `function randomGrid() {
+    let x = 16;
+    let y = 16;
+    initGrid(x,y);
+    for(var i=0;i<x;i++) {
+        for(var j=0;j<y;j++) {
+            if(coinFlip(0.66666)) {
+                pixelOn(i,j);
+            }
+        }
+    }
+}
+
+setInterval(randomGrid,100);`,
   language: 'javascript'
 });
 

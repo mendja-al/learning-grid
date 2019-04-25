@@ -17,3 +17,8 @@ declare function colorize(lineNr: number): void;
 
 /** Resets the colors on the editor. */
 declare function resetColor(): void;
+
+/** Returns a random boolean with a probability defined by the first parameter.
+ * @param {number} [probability=0.5] a number between 0 and 1 which determines the bias of the coin toss. 0.5 means a 50/50 chance of 
+ * true or false, higher than 0.5 means higher probability of true, lower than 0.5 means higher probability of false.
+ */
