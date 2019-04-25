@@ -81,19 +81,17 @@ function clearAllTimeouts() {
 function scopedEval (declarations)
 {
     return (function (declarations) {
-        let _setInterval = window.setInterval;
         let setInterval = (cb,timeout,args) => {
-            let intervalId = _setInterval(cb,timeout,args);
+            let intervalId = window.setInterval(cb,timeout,args);
             intervalList.push(intervalId);
             return intervalId;
         }
 
-        let _setTimeout = window.setTimeout;
         let setTimeout = (cb,timeout,args) => {
-            let timeoutId = _setTimeout(cb,timeout,args);
+            let timeoutId = window.setTimeout(cb,timeout,args);
             timeoutList.push(timeoutId);
             return timeoutId;
         }
-        return eval(declarations); 
+        return eval('(async () => {'+declarations+'})()');
     })(declarations)
 }
