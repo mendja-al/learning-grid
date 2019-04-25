@@ -37,7 +37,8 @@ monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
 monaco.languages.typescript.javascriptDefaults.addExtraLib(customTypes);
 
 let ed = monaco.editor.create(document.getElementById('container'), {
-  value: `pixelOn(2,3);
+  value: `initGrid(8,8);
+pixelOn(2,3);
 pixelOn(4,5);
 pixelOn(0,4);`,
   language: 'javascript'
@@ -54,6 +55,10 @@ export function colorize(lineNr) {
 
 export function getEditorValue() {
     return monaco.editor.getModels()[0].getValue();
+}
+
+export function resetColors() {
+  decorations = ed.deltaDecorations(decorations,[]);
 }
 
 export var editor = monaco;
