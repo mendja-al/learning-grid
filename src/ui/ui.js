@@ -1,58 +1,69 @@
 import {editor, getEditorValue, colorize, resetColors} from './editor';
 let canvas = document.getElementById("learning-canvas");
+let colors = ["#FF6EAB",'#9FCC60',"#4477FF"];
 let ctx = canvas.getContext("2d");
 ctx.translate(0.5, 0.5);
 let canvasWidth = 1280;
 let canvasHeight= 1280;
-let pixelWidth = 0;
-let pixelHeight = 0;
+let pixelSize = 0;
+
 let horPixels = 8;
-let verPixels = 8;
-window.initGrid = (hPixels,vPixels) => {
+const initPixels = 8;
+
+window.initGrid = (hPixels) => {
     horPixels = hPixels;
-    verPixels = vPixels;
-    pixelWidth = Math.floor(canvasWidth/horPixels);
-    pixelHeight = Math.floor(canvasHeight/verPixels);
-    ctx.fillStyle = "#fff";
+    pixelSize = Math.floor(canvasWidth/horPixels);
+    ctx.fillStyle = "#eee";
     ctx.fillRect(0,0,canvasWidth,canvasHeight);
     for(var i=0;i<horPixels;i++) {
-        for(var j=0;j<verPixels;j++) {
+        for(var j=0;j<horPixels;j++) {
             drawGridCell(i,j);   
         }
     }
 }
 
-function drawGridCell(x,y) {
-    let borderWidth = 0.01;
-    let startX = x*pixelWidth;
-    let startY = y*pixelHeight;
-    ctx.fillStyle = "#eee";
-    ctx.fillRect(startX,startY,pixelWidth,borderWidth*pixelHeight);
-    ctx.fillRect(startX,startY+(pixelHeight*(1-borderWidth)),pixelWidth,borderWidth*pixelHeight);
-    ctx.fillRect(startX,startY,borderWidth*pixelWidth,pixelHeight);
-    ctx.fillRect(startX+(pixelWidth*(1-borderWidth)),startY,pixelWidth*borderWidth,pixelHeight);
+function randomInt(lowerLimit,upperLimit) {
+    let range = upperLimit - lowerLimit + 1;
+    let random = Math.random()*range;
+    return Math.floor(random);
 }
 
-initGrid(horPixels,verPixels);
+function drawGridCell(x,y) {
+    let borderWidth = 0.02;
+    let startX = x*pixelSize;
+    let startY = y*pixelSize;
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(startX,startY,pixelSize,borderWidth*pixelSize);
+    ctx.fillRect(startX,startY+(pixelSize*(1-borderWidth)),pixelSize,borderWidth*pixelSize);
+    ctx.fillRect(startX,startY,borderWidth*pixelSize,pixelSize);
+    ctx.fillRect(startX+(pixelSize*(1-borderWidth)),startY,pixelSize*borderWidth,pixelSize);
+}
+
+initGrid(initPixels);
 
 window.colorize = colorize;
 window.resetColors = resetColors;
 
 window.pixelOn = (x,y) => {
-    let borderWidth = 0.01; //in percent of total width
-    let startX = (x+borderWidth)*pixelWidth;
-    let startY = (y+borderWidth)*pixelHeight;
-    ctx.fillStyle = "#000";
-    ctx.fillRect(startX,startY,pixelWidth*(1-(2*borderWidth)),pixelHeight*(1-(2*borderWidth)));
+    let borderWidth = 0.02; //in percent of total width
+    let startX = (x+borderWidth)*pixelSize;
+    let startY = (y+borderWidth)*pixelSize;
+    ctx.fillStyle = colors[randomInt(0,2)];
+    ctx.fillRect(startX,startY,pixelSize*(1-(2*borderWidth)),pixelSize*(1-(2*borderWidth)));
 }
 
 window.runIde = () => {
-  resetColors();
-  clearAllIntervals();
-  clearAllTimeouts();
-  initGrid(horPixels,verPixels);
+  stopIde();
   scopedEval(getEditorValue());
 }
+
+window.stopIde = () => {
+    horPixels = initPixels;
+    resetColors();
+    clearAllIntervals();
+    clearAllTimeouts();
+    initGrid(horPixels);
+  }
 
 window.coinFlip = (probability = 0.5) => {
     return Math.random()<probability;
@@ -92,6 +103,10 @@ function scopedEval (declarations)
             timeoutList.push(timeoutId);
             return timeoutId;
         }
-        return eval('(async () => {'+declarations+'})()');
+        return eval(declarations);
     })(declarations)
+}
+
+canvas.onclick = (ev) => {
+    pixelOn(2,3);
 }

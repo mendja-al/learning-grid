@@ -37,12 +37,12 @@ monaco.languages.typescript.javascriptDefaults.setCompilerOptions({
 monaco.languages.typescript.javascriptDefaults.addExtraLib(customTypes);
 
 let ed = monaco.editor.create(document.getElementById('container'), {
+  fontSize: "24px",
   value: `function randomGrid() {
     let x = 16;
-    let y = 16;
-    initGrid(x,y);
+    initGrid(x);
     for(var i=0;i<x;i++) {
-        for(var j=0;j<y;j++) {
+        for(var j=0;j<x;j++) {
             if(coinFlip(0.66666)) {
                 pixelOn(i,j);
             }

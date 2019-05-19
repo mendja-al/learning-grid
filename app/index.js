@@ -23,6 +23,12 @@ app.get("/frame",(req,res) => {
 	res.render("frame");
 });
 
+app.get("/teacher",(req,res) => {
+	res.render("teacher", {
+		layout: "teacher"
+	});
+});
+
 app.set("x-powered-by",false);
 
 server.listen(port);
