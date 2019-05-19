@@ -44,7 +44,7 @@ let ed = monaco.editor.create(document.getElementById('container'), {
     for(var i=0;i<x;i++) {
         for(var j=0;j<x;j++) {
             if(coinFlip(0.66666)) {
-                pixelOn(i,j);
+                fillCell(i,j);
             }
         }
     }

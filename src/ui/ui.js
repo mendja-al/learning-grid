@@ -1,6 +1,10 @@
 import {editor, getEditorValue, colorize, resetColors} from './editor';
 let canvas = document.getElementById("learning-canvas");
-let colors = ["#FF6EAB",'#9FCC60',"#4477FF"];
+let Colors = {
+    LightBlue: "#4477FF",
+    Pink: "#FF6EAB",
+    LightGreen: "#9FCC60",
+}
 let ctx = canvas.getContext("2d");
 ctx.translate(0.5, 0.5);
 let canvasWidth = 1280;
@@ -44,11 +48,11 @@ initGrid(initPixels);
 window.colorize = colorize;
 window.resetColors = resetColors;
 
-window.pixelOn = (x,y) => {
+window.fillCell = (x,y) => {
     let borderWidth = 0.02; //in percent of total width
     let startX = (x+borderWidth)*pixelSize;
     let startY = (y+borderWidth)*pixelSize;
-    ctx.fillStyle = colors[randomInt(0,2)];
+    ctx.fillStyle = Colors.LightBlue;
     ctx.fillRect(startX,startY,pixelSize*(1-(2*borderWidth)),pixelSize*(1-(2*borderWidth)));
 }
 
@@ -108,5 +112,5 @@ function scopedEval (declarations)
 }
 
 canvas.onclick = (ev) => {
-    pixelOn(2,3);
+    fillCell(2,3);
 }
